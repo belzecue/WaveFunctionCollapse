@@ -16,7 +16,7 @@ abstract class Model
 	int[][][] compatible;
 	protected int[] observed;
 
-	Tuple<int, int>[] stack;
+	(int, int)[] stack;
 	int stacksize;
 
 	protected Random random;
@@ -65,7 +65,7 @@ abstract class Model
 		sumsOfWeightLogWeights = new double[FMX * FMY];
 		entropies = new double[FMX * FMY];
 
-		stack = new Tuple<int, int>[wave.Length * T];
+		stack = new (int, int)[wave.Length * T];
 		stacksize = 0;
 	}
 
@@ -119,7 +119,6 @@ abstract class Model
 
 			int i1 = e1.Item1;
 			int x1 = i1 % FMX, y1 = i1 / FMX;
-			bool[] w1 = wave[i1];
 
 			for (int d = 0; d < 4; d++)
 			{
@@ -171,18 +170,15 @@ abstract class Model
 
 		int[] comp = compatible[i][t];
 		for (int d = 0; d < 4; d++) comp[d] = 0;
-		stack[stacksize] = new Tuple<int, int>(i, t);
+		stack[stacksize] = (i, t);
 		stacksize++;
-
-		double sum = sumsOfWeights[i];
-		entropies[i] += sumsOfWeightLogWeights[i] / sum - Math.Log(sum);
 
 		sumsOfOnes[i] -= 1;
 		sumsOfWeights[i] -= weights[t];
 		sumsOfWeightLogWeights[i] -= weightLogWeights[t];
 
-		sum = sumsOfWeights[i];
-		entropies[i] -= sumsOfWeightLogWeights[i] / sum - Math.Log(sum);
+		double sum = sumsOfWeights[i];
+		entropies[i] = Math.Log(sum) - sumsOfWeightLogWeights[i] / sum;
 	}
 
 	protected virtual void Clear()
