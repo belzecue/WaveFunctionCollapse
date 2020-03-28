@@ -1,7 +1,7 @@
 # WaveFunctionCollapse
 This program generates bitmaps that are locally similar to the input bitmap.
 
-<p align="center"><img alt="main collage" src="http://i.imgur.com/g1yGvL7.png"></p>
+<p align="center"><img alt="main collage" src="https://raw.githubusercontent.com/mxgmn/Blog/master/resources/wfc.png"></p>
 <p align="center"><img alt="main gif" src="http://i.imgur.com/sNuBVSr.gif"></p>
 
 Local similarity means that
@@ -11,7 +11,7 @@ Local similarity means that
 
 In the examples a typical value of N is 3.
 
-<p align="center"><img alt="local similarity" src="http://i.imgur.com/KULGX86.png"></p>
+<p align="center"><img alt="local similarity" src="https://raw.githubusercontent.com/mxgmn/Blog/master/resources/wfc-patterns.png"></p>
 
 WFC initializes output bitmap in a completely unobserved state, where each pixel value is in superposition of colors of the input bitmap (so if the input was black & white then the unobserved states are shown in different shades of grey). The coefficients in these superpositions are real numbers, not complex numbers, so it doesn't do the actual quantum mechanics, but it was inspired by QM. Then the program goes into the observation-propagation cycle:
 
@@ -22,21 +22,21 @@ On each step the overall entropy decreases and in the end we have a completely o
 
 It may happen that during propagation all the coefficients for a certain pixel become zero. That means that the algorithm has run into a contradiction and can not continue. The problem of determining whether a certain bitmap allows other nontrivial bitmaps satisfying condition (C1) is NP-hard, so it's impossible to create a fast solution that always finishes. In practice, however, the algorithm runs into contradictions surprisingly rarely.
 
-Wave Function Collapse algorithm has been implemented in [C++](https://github.com/math-fehr/fast-wfc), [Python](https://github.com/ikarth/wfc_python), [Kotlin](https://github.com/j-roskopf/WFC), [Rust](https://github.com/sdleffler/collapse), [Julia](https://github.com/roberthoenig/WaveFunctionCollapse.jl),  [Go](https://github.com/shawnridgeway/wfc), [Haxe](https://github.com/Mitim-84/WFC-Gen), [JavaScript](https://github.com/kchapelier/wavefunctioncollapse) and adapted to [Unity](https://selfsame.itch.io/unitywfc). You can download official executables from [itch.io](https://exutumno.itch.io/wavefunctioncollapse) or [run it in the browser](http://www.kchapelier.com/wfc-example/overlapping-model.html). WFC generates levels in [Bad North](https://www.badnorth.com/), [Caves of Qud](https://store.steampowered.com/app/333640/Caves_of_Qud/), [several](https://arcadia-clojure.itch.io/proc-skater-2016) [smaller](https://arcadia-clojure.itch.io/swapland) [games](https://marian42.itch.io/wfc) and many prototypes. It led to [new](https://adamsmith.as/papers/wfc_is_constraint_solving_in_the_wild.pdf) [research](https://hal.inria.fr/hal-01706539v3/document). For [more](https://twitter.com/OskSta/status/784847588893814785) [related](https://twitter.com/dwtw/status/810166761270243328) [work](https://github.com/mewo2/oisin), [explanations](https://trasevol.dog/2017/09/01/di19/), [interactive demos](http://oskarstalberg.com/game/wave/wave.html), [guides](https://www.dropbox.com/s/zeiat1w8zre9ro8/Knots%20breakdown.png?dl=0), [tutorials](http://www.procjam.com/tutorials/wfc/) and [examples](https://twitter.com/ExUtumno/status/895684431477747715) see the [ports, forks and spinoffs section](https://github.com/mxgmn/WaveFunctionCollapse#notable-ports-forks-and-spinoffs).
+Wave Function Collapse algorithm has been implemented in [C++](https://github.com/math-fehr/fast-wfc), [Python](https://github.com/ikarth/wfc_python), [Kotlin](https://github.com/j-roskopf/WFC), [Rust](https://github.com/sdleffler/collapse), [Julia](https://github.com/roberthoenig/WaveFunctionCollapse.jl),  [Go](https://github.com/shawnridgeway/wfc), [Haxe](https://github.com/Mitim-84/WFC-Gen), [Java](https://github.com/sjcasey21/wavefunctioncollapse), [Clojure](https://github.com/sjcasey21/wavefunctioncollapse-clj), [JavaScript](https://github.com/kchapelier/wavefunctioncollapse) and adapted to [Unity](https://selfsame.itch.io/unitywfc). You can download official executables from [itch.io](https://exutumno.itch.io/wavefunctioncollapse) or [run it in the browser](http://www.kchapelier.com/wfc-example/overlapping-model.html). WFC generates levels in [Bad North](https://www.badnorth.com/), [Caves of Qud](https://store.steampowered.com/app/333640/Caves_of_Qud/), [Dead Static Drive](https://twitter.com/deadstaticdrive), [several](https://arcadia-clojure.itch.io/proc-skater-2016) [smaller](https://arcadia-clojure.itch.io/swapland) [games](https://marian42.itch.io/wfc) and many prototypes. It led to [new](https://adamsmith.as/papers/wfc_is_constraint_solving_in_the_wild.pdf) [research](https://hal.inria.fr/hal-01706539v3/document). For [more](https://twitter.com/OskSta/status/784847588893814785) [related](https://twitter.com/dwtw/status/810166761270243328) [work](https://github.com/mewo2/oisin), [explanations](https://trasevol.dog/2017/09/01/di19/), [interactive demos](http://oskarstalberg.com/game/wave/wave.html), [guides](https://www.dropbox.com/s/zeiat1w8zre9ro8/Knots%20breakdown.png?dl=0), [tutorials](http://www.procjam.com/tutorials/wfc/) and [examples](https://twitter.com/ExUtumno/status/895684431477747715) see the [ports, forks and spinoffs section](https://github.com/mxgmn/WaveFunctionCollapse#notable-ports-forks-and-spinoffs).
 
 Watch a video demonstration of WFC algorithm on YouTube: [https://youtu.be/DOQTr2Xmlz0](https://youtu.be/DOQTr2Xmlz0)
 
 ## Algorithm
 1. Read the input bitmap and count NxN patterns.
     1. (optional) Augment pattern data with rotations and reflections.
-2. Create an array with the dimensions of the output (called "wave" in the source). Each element of this array represents a state of an NxN region in the output. A state of an NxN region is a superpostion of NxN patterns of the input with boolean coefficients (so a state of a pixel in the output is a superposition of input colors with real coefficients). False coefficient means that the corresponding pattern is forbidden, true coefficient means that the corresponding pattern is not yet forbidden.
+2. Create an array with the dimensions of the output (called "wave" in the source). Each element of this array represents a state of an NxN region in the output. A state of an NxN region is a superposition of NxN patterns of the input with boolean coefficients (so a state of a pixel in the output is a superposition of input colors with real coefficients). False coefficient means that the corresponding pattern is forbidden, true coefficient means that the corresponding pattern is not yet forbidden.
 3. Initialize the wave in the completely unobserved state, i.e. with all the boolean coefficients being true.
 4. Repeat the following steps:
     1. Observation:
         1. Find a wave element with the minimal nonzero entropy. If there is no such elements (if all elements have zero or undefined entropy) then break the cycle (4) and go to step (5).
         2. Collapse this element into a definite state according to its coefficients and the distribution of NxN patterns in the input.
     2. Propagation: propagate information gained on the previous observation step.
-5. By now all the wave elements are either in a completely observed state (all the coefficients except one being zero) or in the contradictive state (all the coefficients being zero). In the first case return the output. In the second case finish the work without returning anything.
+5. By now all the wave elements are either in a completely observed state (all the coefficients except one being zero) or in the contradictory state (all the coefficients being zero). In the first case return the output. In the second case finish the work without returning anything.
 
 ## Tilemap generation
 The simplest nontrivial case of the algorithm is when NxN=1x2 (well, NxM). If we simplify it even further by storing not the probabilities of pairs of colors but the probabilities of colors themselves, we get what we call a "simple tiled model". The propagation phase in this model is just adjacency constraint propagation. It's convenient to initialize the simple tiled model with a list of tiles and their adjacency data (adjacency data can be viewed as a large set of very small samples) rather than a sample bitmap.
@@ -48,20 +48,20 @@ The simplest nontrivial case of the algorithm is when NxN=1x2 (well, NxM). If we
 
 Lists of all the possible pairs of adjacent tiles in practical tilesets can be quite long, so I implemented a symmetry system for tiles to shorten the enumeration. In this system each tile should be assigned with its symmetry type.
 
-<p align="center"><img alt="symmetries" src="http://i.imgur.com/9H0frmK.png"></p>
+<p align="center"><img alt="symmetries" src="https://raw.githubusercontent.com/mxgmn/Blog/master/resources/wfc-symmetry-system.png"></p>
 
 Note that the tiles have the same symmetry type as their assigned letters (or, in other words, actions of the 
 dihedral group D4 are isomorphic for tiles and their corresponding letters). With this system it's enough to enumerate pairs of adjacent tiles only up to symmetry, which makes lists of adjacencies for tilesets with many symmetrical tiles (even the summer tileset, despite drawings not being symmetrical the system considers such tiles to be symmetrical) several times shorter.
 
 <p align="center">
-	<img alt="knots" src="http://i.imgur.com/EnBkcVN.png">
-	<img alt="tiled rooms" src="http://i.imgur.com/BruxOx9.png">
-	<img alt="circuit 1" src="http://i.imgur.com/BYt7AR6.png">
-	<img alt="circuit 2" src="http://i.imgur.com/yYHbMx8.png">
-	<img alt="circles" src="http://i.imgur.com/Hrs0Ir8.png">
-	<img alt="castle" src="http://i.imgur.com/Nd2mQOC.png">
-	<img alt="summer 1" src="http://i.imgur.com/re8WBud.png">
-	<img alt="summer 2" src="http://i.imgur.com/OmUHk1t.png">
+	<img alt="knots" src="https://raw.githubusercontent.com/mxgmn/Blog/master/resources/wfc-knots.png">
+	<img alt="tiled rooms" src="https://raw.githubusercontent.com/mxgmn/Blog/master/resources/wfc-rooms.png">
+	<img alt="circuit 1" src="https://raw.githubusercontent.com/mxgmn/Blog/master/resources/wfc-circuit-1.png">
+	<img alt="circuit 2" src="https://raw.githubusercontent.com/mxgmn/Blog/master/resources/wfc-circuit-2.png">
+	<img alt="circles" src="https://raw.githubusercontent.com/mxgmn/Blog/master/resources/wfc-circles.png">
+	<img alt="castle" src="https://raw.githubusercontent.com/mxgmn/Blog/master/resources/wfc-castle.png">
+	<img alt="summer 1" src="https://raw.githubusercontent.com/mxgmn/Blog/master/resources/wfc-summer-1.png">
+	<img alt="summer 2" src="https://raw.githubusercontent.com/mxgmn/Blog/master/resources/wfc-summer-2.png">
 </p>
 
 Note that the unrestrained knot tileset (with all 5 tiles being allowed) is not interesting for WFC, because you can't run into a situation where you can't place a tile. We call tilesets with this property "easy". Without special heuristics easy tilesets don't produce interesting global arrangements, because correlations of tiles in easy tilesets quickly fall off with a distance. Many easy tilesets can be found on [cr31's site](http://cr31.co.uk/stagecast/wang/tiles_e.html). Consider the "Dual" 2-edge tileset there. How can it generate knots (without t-junctions, not easy) while being easy? The answer is, it can only generate a narrow class of knots, it can't produce an arbitrary knot.
@@ -71,14 +71,14 @@ Note also that Circuit, Summer and Rooms tilesets are non-Wang. That is, their a
 ## Higher dimensions
 WFC algorithm in higher dimensions works completely the same way as in dimension 2, though performance becomes an issue. These voxel models were generated with N=2 overlapping tiled model using 5x5x5 and 5x5x2 blocks and additional heuristics (height, density, curvature, ...).
 
-<p align="center"><img alt="voxels" src="http://i.imgur.com/hsqPdQl.png"></p>
+<p align="center"><img alt="voxels" src="https://raw.githubusercontent.com/mxgmn/Blog/master/resources/wfc-castles-3d.png"></p>
 
 Higher resolution screenshots: [1](http://i.imgur.com/0bsjlBY.png), [2](http://i.imgur.com/GduN0Vr.png), [3](http://i.imgur.com/IEOsbIy.png).
 
 Voxel models generated with WFC and other algorithms will be in a separate repo.
 
 ## Constrained synthesis
-WFC algorithm supports constraints. Therefore, it can be easely combined with other generative algorithms or with manual creation.
+WFC algorithm supports constraints. Therefore, it can be easily combined with other generative algorithms or with manual creation.
 
 Here is WFC autocompleting a level started by a human:
 
@@ -87,7 +87,7 @@ Here is WFC autocompleting a level started by a human:
   <a href="http://i.imgur.com/X3aNDUv.gifv">GIFV</a>
 </p>
 
-[ConvChain](https://github.com/mxgmn/ConvChain) algorithm satisfies the strong version of the condition (C2): the limit distribution of NxN patterns in the outputs it is producing is exactly the same as the distributions of patterns in the input. However, ConvChain doesn't satisfy (C1): it often produces noticeable artefacts. It makes sense to run ConvChain first to get a well-sampled configuration and then run WFC to correct local artefacts. This is similar to a common strategy in optimization: first run a Monte-Carlo method to find a point close to a global optimum and then run a gradient descent from that point for greater accuracy.
+[ConvChain](https://github.com/mxgmn/ConvChain) algorithm satisfies the strong version of the condition (C2): the limit distribution of NxN patterns in the outputs it is producing is exactly the same as the distributions of patterns in the input. However, ConvChain doesn't satisfy (C1): it often produces noticeable defects. It makes sense to run ConvChain first to get a well-sampled configuration and then run WFC to correct local defects. This is similar to a common strategy in optimization: first run a Monte-Carlo method to find a point close to a global optimum and then run a gradient descent from that point for greater accuracy.
 
 P. F. Harrison's [texture synthesis](https://github.com/mxgmn/SynTex) algorithm is significantly faster than WFC, but it has trouble with long correlations (for example, it's difficult for this algorithm to synthesize brick wall textures with correctly aligned bricks). But this is exactly where WFC shines, and Harrison's algorithm supports constraints. It makes sense first to generate a perfect brick wall blueprint with WFC and then run a constrained texture synthesis algorithm on that blueprint.
 
@@ -131,7 +131,7 @@ Alternatively, use build instructions from the community for various platforms f
 * rid5x is making an [OCaml version of WFC](https://twitter.com/rid5x/status/782442620459114496).
 * I published a very basic [3d tiled model](https://bitbucket.org/mxgmn/basic3dwfc/overview) so people could make their own 3d tilesets without waiting for the full 3d repository.
 * I made an [interactive version](https://twitter.com/ExUtumno/status/798571284342837249) of the overlapping model, you can download the GUI executable from the [WFC itch.io page](https://exutumno.itch.io/wavefunctioncollapse).
-* [Brian Bucklew](https://github.com/unormal) built a level generation pipeline that applies WFC in multiple passes for the [Caves of Qud](http://store.steampowered.com/app/333640) game: [1](https://twitter.com/unormal/status/805987523596091392), [2](https://twitter.com/unormal/status/808566029387448320), [3](https://twitter.com/unormal/status/808523056259993601), [4](https://twitter.com/unormal/status/808523493994364928), [5](https://twitter.com/unormal/status/808519575264497666), [6](https://twitter.com/unormal/status/808519216185876480), [7](https://twitter.com/unormal/status/808795396508123136), [8](https://twitter.com/unormal/status/808860105093632001), [9](https://twitter.com/unormal/status/809637856432033792), [10](https://twitter.com/unormal/status/810239794433425408), [11](https://twitter.com/unormal/status/811034574973243393), [12](https://twitter.com/unormal/status/811720423419314176), [13](https://twitter.com/unormal/status/811034037259276290), [14](https://twitter.com/unormal/status/810971337309224960), [15](https://twitter.com/unormal/status/811405368777723909), [16](https://twitter.com/ptychomancer/status/812053801544757248), [17](https://twitter.com/unormal/status/812159308263788544), [18](https://twitter.com/unormal/status/812158749838340096), [19](https://twitter.com/unormal/status/814569437181476864), [20](https://twitter.com/unormal/status/814570383189876738), [21](https://twitter.com/unormal/status/819725864623603712).
+* [Brian Bucklew](https://github.com/unormal) built a level generation pipeline that applies WFC in multiple passes for the [Caves of Qud](http://store.steampowered.com/app/333640) game: [1](https://twitter.com/unormal/status/805987523596091392), [2](https://twitter.com/unormal/status/808566029387448320), [3](https://twitter.com/unormal/status/808523056259993601), [4](https://twitter.com/unormal/status/808523493994364928), [5](https://twitter.com/unormal/status/808519575264497666), [6](https://twitter.com/unormal/status/808519216185876480), [7](https://twitter.com/unormal/status/808795396508123136), [8](https://twitter.com/unormal/status/808860105093632001), [9](https://twitter.com/unormal/status/809637856432033792), [10](https://twitter.com/unormal/status/810239794433425408), [11](https://twitter.com/unormal/status/811034574973243393), [12](https://twitter.com/unormal/status/811720423419314176), [13](https://twitter.com/unormal/status/811034037259276290), [14](https://twitter.com/unormal/status/810971337309224960), [15](https://twitter.com/unormal/status/811405368777723909), [16](https://twitter.com/ptychomancer/status/812053801544757248), [17](https://twitter.com/unormal/status/812159308263788544), [18](https://twitter.com/unormal/status/812158749838340096), [19](https://twitter.com/unormal/status/814569437181476864), [20](https://twitter.com/unormal/status/814570383189876738), [21](https://twitter.com/unormal/status/819725864623603712), [22](https://twitter.com/unormal/status/984719207156862976).
 * [Danny Wynne](https://github.com/dannywynne) implemented a [3d tiled model](https://twitter.com/dwtw/status/810166761270243328).
 * Arvi Teikari programmed a [texture synthesis algorithm with the entropy heuristic](http://www.hempuli.com/blogblog/archives/1598) in Lua. Headchant [ported](https://github.com/headchant/iga) it to work with LÖVE.
 * Isaac Karth made a [Python port](https://github.com/ikarth/wfc_python) of the overlapping model.
@@ -152,7 +152,7 @@ that the resulting observed zone is navigable at each step.
 * [Sylvain Lefebvre](https://github.com/sylefeb), [Li-Yi Wei](https://github.com/1iyiwei) and [Connelly Barnes](https://github.com/connellybarnes) are [investigating](https://hal.archives-ouvertes.fr/hal-01706539/) the possibility of hiding information inside textures. They made a [tool](https://members.loria.fr/Sylvain.Lefebvre/infotexsyn/) that can encode text messages as WFC tilings and decode them back. This technique allows to use WFC tilings as QR codes.
 * [Mathieu Fehr](https://github.com/math-fehr) and [Nathanael Courant](https://github.com/Ekdohibs) significantly [improved](https://github.com/math-fehr/fast-wfc) the running time of WFC, by an order of magnitude for the overlapping model. I [integrated](https://github.com/mxgmn/WaveFunctionCollapse/commit/fad1066b5000f7e9fbda0ef81bbea56799686670) their improvements into the code.
 * Vasu Mahesh [ported](https://github.com/vasumahesh1/WFC_WebGL) 3d tiled model to TypeScript, made a new tileset and [visualised](https://vasumahesh1.github.io/WFC_WebGL) the generation process in WebGL.
-* [Kim Hwanhee](https://github.com/greentec) experimented with 3d WFC and created/adapted many voxel tilesets: [1](https://twitter.com/greentecq/status/1025348928634408960), [2](https://twitter.com/greentecq/status/1004068394553913344), [3](https://twitter.com/greentecq/status/1005835830802305024), [4](https://twitter.com/greentecq/status/1022851327041265664), [5](https://twitter.com/greentecq/status/1011351814216736769), [6](https://twitter.com/greentecq/status/1008210550944387077), [7](https://twitter.com/greentecq/status/1006390606875070464), [8](https://twitter.com/greentecq/status/1015182718810841088).
+* [Hwanhee Kim](https://github.com/greentec) experimented with 3d WFC and created/adapted many voxel tilesets: [1](https://twitter.com/greentecq/status/1025348928634408960), [2](https://twitter.com/greentecq/status/1004068394553913344), [3](https://twitter.com/greentecq/status/1005835830802305024), [4](https://twitter.com/greentecq/status/1022851327041265664), [5](https://twitter.com/greentecq/status/1011351814216736769), [6](https://twitter.com/greentecq/status/1008210550944387077), [7](https://twitter.com/greentecq/status/1006390606875070464), [8](https://twitter.com/greentecq/status/1015182718810841088).
 * Oskar Stalberg gave a [talk](https://www.youtube.com/watch?v=0bcZb-SsnrA) about level generation in Bad North at the Everything Procedural Conference 2018.
 * I [wrote](https://twitter.com/ExUtumno/status/1024314661951467521) about how to generate (approximately) unbiased paths between 2 points with WFC and other algorithms.
 * [Isaac Karth](https://github.com/ikarth) and [Adam M. Smith](https://github.com/rndmcnlly) published a [preprint](https://arxiv.org/abs/1809.04432) where they describe a system based on WFC that learns from both positive and negative examples, and discuss it in a general context of dialogs with example-driven generators.
@@ -169,9 +169,17 @@ that the resulting observed zone is navigable at each step.
 * For the Global Game Jam 2019, [Andy Wallace](https://github.com/andymasteroffish) made a [game](http://andymakesgames.tumblr.com/post/182363131350/global-game-jam-2019-maureens-chaotic-dungeon) in which the player can interact with WFC-based level generator by resetting portions of the level with various weapons.
 * Stephen Sherratt wrote a [detailed explanation](https://gridbugs.org/wave-function-collapse/) of the overlapping model and made a [Rust library](https://github.com/stevebob/wfc). For the 7DRL Challenge 2019 he made a roguelike [Get Well Soon](https://gridbugs.org/get-well-soon/) that [uses](https://gridbugs.org/7drl2019-day1/) WFC to generate levels.
 * Florian Drux created a [generalization](https://github.com/lamelizard/GraphWaveFunctionCollapse/blob/master/thesis.pdf) that works on graphs with arbitrary local structure and [implemented](https://github.com/lamelizard/GraphWaveFunctionCollapse) it in Python.
+* Bob Burrough [discovered](https://twitter.com/ExUtumno/status/1119996185199116289) a percolation-like phase transition in one of the tilesets that manifests in spiking contradiction rate.
+* Oskar Stalberg combined WFC with marching squares/cubes on an irregular grid: [1](https://twitter.com/OskSta/status/1164926304640229376), [2](https://twitter.com/OskSta/status/1168168400155267072), [3](https://twitter.com/OskSta/status/1181464374839521280), [4](https://twitter.com/OskSta/status/1189109278361165825), [5](https://twitter.com/OskSta/status/1189902695303458816), [6](https://www.youtube.com/watch?v=1hqt8JkYRdI).
+* In his Rust roguelike tutorial, [Herbert Wolverson](https://github.com/thebracket) wrote a [chapter](http://bfnightly.bracketproductions.com/rustbook/chapter_33.html) about implementing the WFC algorithm from scratch.
+* At the Roguelike Celebration 2019, [Brian Bucklew](https://github.com/unormal) gave a [talk](https://www.youtube.com/watch?v=fnFj3dOKcIQ) about WFC and how Freehold Games uses it to generate levels in [Caves of Qud](https://store.steampowered.com/app/333640/Caves_of_Qud/). The talk discusses problems with overfitting and homogeny, level connectedness and combining WFC with constructive procgen methods.
+* Boris the Brave published a [commercial Unity asset](https://assetstore.unity.com/packages/tools/modeling/tessera-procedural-tile-based-generator-155425) based on the tiled model.
+* Steven Casey ported WFC to [Java](https://github.com/sjcasey21/wavefunctioncollapse) and [Clojure](https://github.com/sjcasey21/wavefunctioncollapse-clj).
+* Nuño de la Serna implemented the 3d tiled model in an [openFrameworks addon](https://github.com/action-script/ofxWFC3D) that supports tiles with no symmetries.
+* Paul Ambrosiussen [integrated](https://github.com/sideeffects/SideFXLabs) the overlapping model into Houdini and gave a [talk](https://vimeo.com/400993662) about the algorithm and his implementation at Houdini HIVE 2020.
 
 ## Credits
-Some samples are taken from the games Ultima IV and [Dungeon Crawl](https://github.com/crawl/crawl). Circles tileset is taken from [Mario Klingemann](https://twitter.com/quasimondo/status/778196128957403136). Idea of generating integrated circuits was suggested to me by [Moonasaur](https://twitter.com/Moonasaur/status/759890746350731264) and their style was taken from Zachtronics' [Ruckingenur II](http://www.zachtronics.com/ruckingenur-ii/). Cat overlapping sample is taken from the Nyan Cat video, Qud sample was made by [Brian Bucklew](https://github.com/unormal), Magic Office + Spirals samples - by rid5x, Colored City + Link + Link 2 + Mazelike + Red Dot + Smile City overlapping samples - by Arvi Teikari. Summer tileset was made by Hermann Hillmann. Voxel models were rendered in [MagicaVoxel](http://ephtracy.github.io/).
+Some samples are taken from the games Ultima IV and [Dungeon Crawl](https://github.com/crawl/crawl). Circles tileset is taken from [Mario Klingemann](https://twitter.com/quasimondo/status/778196128957403136). Idea of generating integrated circuits was suggested to me by [Moonasaur](https://twitter.com/Moonasaur/status/759890746350731264) and their style was taken from Zachtronics' [Ruckingenur II](http://www.zachtronics.com/ruckingenur-ii/). Cat overlapping sample is taken from the Nyan Cat video, Qud sample was made by [Brian Bucklew](https://github.com/unormal), MagicOffice + Spirals samples - by rid5x, ColoredCity + Link + Link 2 + Mazelike + RedDot + SmileCity overlapping samples - by Arvi Teikari. Summer tileset was made by Hermann Hillmann. Voxel models were rendered in [MagicaVoxel](http://ephtracy.github.io/).
 
-<p align="center"><img alt="second collage" src="http://i.imgur.com/CZsvnc7.png"></p>
-<p align="center"><img alt="voxel perspective" src="http://i.imgur.com/RywXCHn.png"></p>
+<p align="center"><img alt="second collage" src="https://raw.githubusercontent.com/mxgmn/Blog/master/resources/wfc-2.png"></p>
+<p align="center"><img alt="voxel perspective" src="https://raw.githubusercontent.com/mxgmn/Blog/master/resources/wfc-castle-3d.png"></p>
